@@ -8,6 +8,12 @@ Created on Tue Apr 26 11:40:48 2022
 import io, folium, altair, json
 from folium import plugins
 
+
+mes_esp = {'January':'Ene', 'February':'Feb',
+            'March':'Mar', 'April':'Abr', 'May':'May',
+            'June':'Jun', 'July':'Jul', 'August':'Ago',
+            'September':'Set', 'October':'Oct', 'November':'Nov', 'December':'Dic'}
+
 class CTD:
     def __init__(self, df):
         self.datos = df[['profundidad', 'variable', 'valor']]
@@ -44,9 +50,10 @@ class CTD:
 def ad_to_map( mapa, ctd_obj, color_dict):
     df = ctd_obj.datos
     coords = ctd_obj.coordenadas()
-    mes = ctd_obj.mes
+    mes = mes_esp[ctd_obj.mes]
     anio_ctd = ctd_obj.fecha
     # print( coords[0], coords[1] )
+    
     chart = altair.Chart(df
           ).mark_circle(
               size=7
@@ -62,10 +69,10 @@ def ad_to_map( mapa, ctd_obj, color_dict):
           ).resolve_scale(
             x='independent',
             y='shared')
-    json_chart =  chart.to_json( )         
-    chart_2 = json.loads(json_chart)
+    # json_chart =  chart.to_json( )         
+    # chart_2 = json.loads(json_chart)
     popup = folium.Popup(max_width=450)   
-    folium.features.VegaLite(chart_2, height=150, width=400).add_to(popup)  # pop-up label for the marker   
+    folium.features.VegaLite(chart, height=150, width=400).add_to(popup)  # pop-up label for the marker   
     folium.Marker(location=[coords[1], coords[0]], # coordinates for the marker (Earth Lab at CU Boulder)
         popup = popup,
         icon = plugins.BeautifyIcon(iconSize=[10, 10], number = int(anio_ctd.year),
