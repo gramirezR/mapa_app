@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %} CTD {{ anio }} {% endblock %}
+{% block content %}
+    <h1> Dirección de Hidrografía y Navegación</h1>
+    <h3> Datos del año  {{ anio }}  </h3>
+    <h3> Número de perfiles:  {{ tamanio }}  </h3>
+    <form action="" method="POST">
+	    <label for="title">Año</label>
+		<br>
+		<input type="text" name="anio"
+		       placeholder="año del crucero"
+			   value="{{ request.form['anio'] }}"></input>
+	</form>	
+	<iframe src="/mapa" width=800 height=650></iframe>
+    <br><br><br>
+    
+{% endblock %}
