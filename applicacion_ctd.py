@@ -4,17 +4,18 @@ Created on Tue Apr 26 12:02:20 2022
 
 @author: gramirez
 """
-
-import pandas as pd
-import os
-from selenium import webdriver
+from modulos import *
+# import pandas as pd
+# import os
+# from selenium import webdriver
+# import folium
 # import numpy as np
 # import matplotlib.pyplot as plt
 
 # import json
 
-from ctd_objt import CTD, ad_to_map # CTD se usa al cargar los datos en df_ctd
-from funciones_mapa_app import cruceros_por_anio
+# from ctd_objt import CTD, ad_to_map # CTD se usa al cargar los datos en df_ctd
+# from funciones_mapa_app import cruceros_por_anio
 # altair.data_transformers.disable_max_rows()
 # # altair.data_transformers.enable('json')
 # altair.renderers.set_embed_options(actions=False)
@@ -58,11 +59,7 @@ driver.get(mapUrl)
 
 #%%
 
-# cruceros = { anio:[] for anio in range(1994,2019) }
 
-# for ctd_mes in df_ctd:
-#     for ctd in ctd_mes:
-#         cruceros[ctd.fecha.year].append( ctd )
 
 # #%%
 
@@ -76,7 +73,10 @@ driver.get(mapUrl)
 
 # #%%
 
-# lista_ctd = cruceros[2018]
+lista_ctd = cruceros[2018]
+
+
+
 
 # lista_ctd_mes = { 'Ene':[], 'Feb':[], 'Mar':[], 'Abr':[], 'May':[],\
 #                  'Jun':[], 'Jul':[], 'Ago':[], 'Set':[], 'Oct':[], 'Nov':[], 'Dic':[] }

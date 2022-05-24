@@ -7,6 +7,7 @@ Created on Fri Apr 29 16:23:23 2022
 from modulos import *
 
 def cruceros_por_anio(lista_ctd, anio):
+
     ncolores = 12
     colores = sns.color_palette("hls", ncolores).as_hex()
     color_dict = { mes_esp[mes_unico[ii]] : colores[ii]    for ii in range(ncolores) }
@@ -24,12 +25,25 @@ def cruceros_por_anio(lista_ctd, anio):
     lista_ctd_mes = dict( [ (k, v) for k, v in lista_ctd_mes.items() if len(v)>0 ] )    
     
     lgd_txt = '<span style="color: {col};">{txt}</span>'
+        
     coordenadas = (-12.25, -77.45)
     mapa = folium.Map(
           location = coordenadas,
           zoom_start = 6		
       )
-    
+    formatter = "function(num) {return L.Util.formatNum(num, 3) + ' º ';};"
+
+    MousePosition(
+       position="topright",
+       separator=" | ",
+       empty_string="NaN",
+       lng_first=True,
+       num_digits=20,
+       prefix="Coordenadas:",
+       lat_formatter=formatter,
+       lng_formatter=formatter,
+   ).add_to(mapa)
+
     mapa.fit_bounds([[-20, -90],[-5, -70]]) 
     for mes, ctd_mes in lista_ctd_mes.items():
        grupo_mes = folium.FeatureGroup(\
@@ -39,7 +53,10 @@ def cruceros_por_anio(lista_ctd, anio):
        [ ad_to_map( grupo_mes, ctd, color_dict) for ctd in ctd_mes ]
        grupo_mes.add_to(mapa)
     folium.LayerControl(collapsed=False).add_to(mapa)
-   
+    
+    with open('capa_mapa.json','w') as f:
+        print(grupo_mes.to_json(), file=f)
+    
     return mapa, lista_ctd_mes 
 
 

@@ -26,7 +26,6 @@ print(archivos_orden)
 ctd_df = pd.read_pickle( archivos[1] )
 # print(ctd_df[['profundidad', 'variable', 'valor']].head())
 
-
 mes_esp = {'January':'Enero', 'February':'Febrero', 'March':'Marzo', 'April':'Abril',\
            'May':'Mayo', 'June':'Junio', 'July':'Julio', 'August':'Agosto',\
                'September':'Setiembre', 'October':'Octubre', 'November':'Noviembre',\
