@@ -4,20 +4,14 @@
    <meta charset="UTF-8">
    <title> {% block title %} {% endblock %} </title>
    <link rel="shortcut icon" href="../static/img/dhn.ico">
-   <style>
-       nav a {
-           background-color: #000066;
-	       color: white;
-		   front-size: 3em;
-		   margin-left: 50px;
-		   text-decoration: none;
-	   }
-   </style>
+   <link rel="stylesheet" href="../static/base.css">
 </head>
-<body bgcolor=”#000066">
+<body>
     <nav>
-        <a href="{{ url_for('index') }}">CTDApp</a>
-	    <a href="#">About</a>
+        <a href="{{ url_for('index') }}">Cruceros</a>
+	    <a href="{{ url_for('salinidad') }}">Salinidad</a>
+	    <a href="{{ url_for('temperatura') }}">Temperatura</a>
+	    <a href="{{ url_for('vsonido') }}">V.Sonido</a>
     </nav>
 	<hr>
 	    {% block content %} {% endblock %}

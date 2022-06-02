@@ -54,8 +54,8 @@ def cruceros_por_anio(lista_ctd, anio):
        grupo_mes.add_to(mapa)
     folium.LayerControl(collapsed=False).add_to(mapa)
     
-    with open('capa_mapa.json','w') as f:
-        print(grupo_mes.to_json(), file=f)
+    # with open('capa_mapa.json','w') as f:
+    #     print(grupo_mes.to_json(), file=f)
     
     return mapa, lista_ctd_mes 
 
@@ -65,4 +65,5 @@ def numero_perfiles( diccionario_ctd ):
     for key in diccionario_ctd.keys():
         nperfiles += len(diccionario_ctd[key])
     return nperfiles    
+
 

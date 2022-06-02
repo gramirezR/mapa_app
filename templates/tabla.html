@@ -1,3 +1,46 @@
-<h1>{{ valor }} TABAJANDO</h1>
+<!DOCTYPE html>
+<html lang="eng">
+<head>
+   <link rel="stylesheet" href="../static/base.css">
+</head>
+<table>
+    <thead>
+        
+    </thead>
+    <tbody bgcolor="#FFFFFF">
+      {% for mes, lista in lista_ctd.items() %}
+          <tr>
+              <td style="font-size: 2em;"> {{ mes }} </td>
+          </tr>
+          <tr>
+              <td class="tablaH"> ID </td>
+              <td class="tablaH"> LON </td>
+              <td class="tablaH"> LAT </td>
+              <td class="tablaH"> FECHA </td>
+              <td class="tablaH"> PROF. MÁX </td>
+              <td class="tablaH"> TEMPERATURA  </td>
+              <td class="tablaH"> SALINIDAD  </td>
+              <td class="tablaH"> V.SONIDO  </td>
+          </tr>          
+          {% for ctd in lista %}
+          <tr>
+              <td> {{ '{:d}'.format(ctd.id) }} </td>
+              <td> {{ '{:.5f}'.format(ctd.lon) }} </td>
+              <td> {{ '{:.5f}'.format(ctd.lat) }} </td>
+              <td> {{ '{}'.format( ctd.fecha.strftime('%Y-%m-%d') ) }} </td>
+              <td style="text-align: center;"> {{ '{:.0f}'.format(  ctd.datos.profundidad.max() ) }} </td>
+              <td style="text-align: center;"> {{ '{:.1f} - {:.1f}'.format(  ctd.datos[ ctd.datos.variable=='temperatura' ].valor.min(),
+               ctd.datos[ ctd.datos.variable=='temperatura' ].valor.max() ) }} </td>
+              <td style="text-align: center;"> {{ '{:.1f} - {:.1f}'.format(  ctd.datos[ ctd.datos.variable=='salinidad' ].valor.min(),
+               ctd.datos[ ctd.datos.variable=='salinidad' ].valor.max() ) }} </td>
+              <td style="text-align: center;"> {{ '{:.1f} - {:.1f}'.format(  ctd.datos[ ctd.datos.variable=='v.sonido' ].valor.min(),
+               ctd.datos[ ctd.datos.variable=='v.sonido' ].valor.max() ) }} </td>               
+                
+          </tr>             
+          {% endfor %}
+      {% endfor %}
+    </tbody>        
+</table>
+</html>
 
 
