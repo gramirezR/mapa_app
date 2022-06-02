@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %} V.SONIDO {{ profundidad }} {% endblock %}
+{% block content %}
+  <div>
+  <h1> Velocidad del Sonido a {{ profundidad }} mts de profundidad </h1>
+    <h2> Datos del año {{ anio }} </h2>
+     <form action="" method="POST">
+		<br>
+	    <label for="title">Profundidad</label>
+		<input type="text" name="profundidad"
+		       placeholder="año del crucero"
+			   value="{{ request.form['profundidad'] }}"></input>
+     </form>
+  <div class="mapa_div">
+	 <iframe src="/mapa_vsonido" width=1200 height=800></iframe> 
+  </div>    
+{% endblock %}
